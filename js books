@@ -1,0 +1,56 @@
+class Book {
+  // Initialize book details
+  constructor(titleName, authorName, ISBNCode) {
+    this.titleName = titleName;
+    this.authorName = authorName;
+    this.ISBNCode = ISBNCode;
+  }
+}
+
+class Library {
+  constructor(bookCollection) {
+    // Create an empty array to store books or use the provided collection
+    this.bookCollection = bookCollection || [];
+  }
+
+  addBook(newBook) {
+    // Add a new book to the library using the push method
+    this.bookCollection.push(newBook);
+  }
+
+  removeBook(bookToRemove) {
+    // Find the index of the book to be removed using indexOf and eliminate it with splice()
+    for (let book of this.bookCollection) {
+      let index = this.bookCollection.indexOf(book);
+      if (book === bookToRemove) {
+        this.bookCollection.splice(index, 1);
+      }
+    }
+  }
+
+  displayAllBooks() {
+    let indexCounter = 1;
+    // Display details of all books in the library
+    for (let book of this.bookCollection) {
+      console.log(`${indexCounter}) Title: ${book.titleName} | Author: ${book.authorName} | ISBN: ${book.ISBNCode}`);
+      ++indexCounter;
+    }
+  }
+}
+
+// Create new instances of books with different titles
+const firstBook = new Book("The Catcher in the Rye", "J.D. Salinger", "9780241950425");
+const secondBook = new Book("To Kill a Mockingbird", "Harper Lee", "0061120081");
+
+// Create a new library
+const library = new Library();
+
+// Add the new books to the library
+library.addBook(firstBook);
+library.addBook(secondBook);
+
+// Remove one of the books
+library.removeBook(firstBook);
+
+// Display all books in the library
+library.displayAllBooks();
